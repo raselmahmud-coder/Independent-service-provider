@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../../Pages/Home/Header/Header";
 
 const Navbar = () => {
@@ -59,7 +60,7 @@ const Navbar = () => {
             className="collapse navbar-collapse flex-grow items-center"
             id="navbarSupportedContent"
           >
-            <a
+            <Link
               className="
         flex
         items-center
@@ -70,42 +71,50 @@ const Navbar = () => {
         lg:mt-0
         mr-1
       "
-              href="/"
+              to={''}
             >
-             <h1 className="text-bold">HOPKINS COACH</h1>
-            </a>
+              <h1 className="text-bold">HOPKINS COACH</h1>
+            </Link>
             <ul className="navbar-nav flex flex-col pl-0 list-style-none m-auto">
               <li className="nav-item p-2">
-                <a
+                <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  href="/"
+                  to={''}
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item p-2">
-                <a
+                <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  href="/"
+                  to={'/blog'}
                 >
                   Blog
-                </a>
+                </Link>
               </li>
               <li className="nav-item p-2">
-                <a
+                <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  href="/"
+                  to={'/about'}
                 >
                   About
-                </a>
+                </Link>
+              </li>
+              <li className="nav-item p-2">
+                <Link
+                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  to={'/sign_in'}
+                >
+                  Sign In
+                </Link>
               </li>
             </ul>
           </div>
 
           <div className="flex items-center relative">
-            <a
+            <Link
               className="text-gray-500 hover:text-gray-700 focus:text-gray-700 mr-4"
-              href="/"
+              to={'/'}
             >
               <svg
                 aria-hidden="true"
@@ -122,9 +131,9 @@ const Navbar = () => {
                   d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
                 ></path>
               </svg>
-            </a>
+            </Link>
             <div className="dropdown relative">
-              <a
+              <Link
                 className="
           text-gray-500
           hover:text-gray-700
@@ -134,7 +143,7 @@ const Navbar = () => {
           hidden-arrow
           flex items-center
         "
-                href="/"
+                to={''}
                 id="dropdownMenuButton1"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -158,7 +167,7 @@ const Navbar = () => {
                 <span className="text-white bg-red-700 absolute rounded-full text-xs -mt-2.5 ml-2 py-0 px-1.5">
                   1
                 </span>
-              </a>
+              </Link>
               <ul
                 className="
       dropdown-menu
@@ -185,7 +194,7 @@ const Navbar = () => {
                 aria-labelledby="dropdownMenuButton1"
               >
                 <li>
-                  <a
+                  <Link
                     className="
           dropdown-item
           text-sm
@@ -199,13 +208,13 @@ const Navbar = () => {
           text-gray-700
           hover:bg-gray-100
         "
-                    href="/"
+                    to={'/'}
                   >
                     Action
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     className="
           dropdown-item
           text-sm
@@ -219,13 +228,13 @@ const Navbar = () => {
           text-gray-700
           hover:bg-gray-100
         "
-                    href="/"
+                    to={''}
                   >
                     Another action
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     className="
           dropdown-item
           text-sm
@@ -239,17 +248,17 @@ const Navbar = () => {
           text-gray-700
           hover:bg-gray-100
         "
-                    href="/"
+                    to={'/'}
                   >
                     Something else here
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
             <div className="dropdown relative">
-              <a
+              <Link
                 className="dropdown-toggle flex items-center hidden-arrow"
-                href="/"
+                to={''}
                 id="dropdownMenuButton2"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -262,7 +271,7 @@ const Navbar = () => {
                   alt=""
                   loading="lazy"
                 />
-              </a>
+              </Link>
               <ul
                 className="
     dropdown-menu
@@ -289,7 +298,7 @@ const Navbar = () => {
                 aria-labelledby="dropdownMenuButton2"
               >
                 <li>
-                  <a
+                  <Link
                     className="
         dropdown-item
         text-sm
@@ -303,13 +312,13 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                    href="/"
+                    to={'/'}
                   >
                     Action
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     className="
         dropdown-item
         text-sm
@@ -323,13 +332,13 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                    href="/"
+                    to={'/'}
                   >
                     Another action
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     className="
         dropdown-item
         text-sm
@@ -343,17 +352,16 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                    href="/"
+                    to={'/'}
                   >
                     Something else here
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
-      <Header />
     </>
   );
 };
