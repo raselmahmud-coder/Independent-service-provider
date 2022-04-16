@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../../Pages/Home/Header/Header";
 
 const Navbar = () => {
   return (
@@ -71,20 +72,15 @@ const Navbar = () => {
       "
               href="/"
             >
-              <img
-                src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
-                style={{ height: "15px" }}
-                alt=""
-                loading="lazy"
-              />
+             <h1 className="text-bold">HOPKINS COACH</h1>
             </a>
-            <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
+            <ul className="navbar-nav flex flex-col pl-0 list-style-none m-auto">
               <li className="nav-item p-2">
                 <a
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
                   href="/"
                 >
-                  Dashboard
+                  Home
                 </a>
               </li>
               <li className="nav-item p-2">
@@ -92,7 +88,7 @@ const Navbar = () => {
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
                   href="/"
                 >
-                  Team
+                  Blog
                 </a>
               </li>
               <li className="nav-item p-2">
@@ -100,7 +96,7 @@ const Navbar = () => {
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
                   href="/"
                 >
-                  Projects
+                  About
                 </a>
               </li>
             </ul>
@@ -357,6 +353,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <Header />
     </>
   );
 };
