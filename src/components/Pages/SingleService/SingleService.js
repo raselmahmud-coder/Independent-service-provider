@@ -1,19 +1,21 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useServices } from "../../../Hooks/useServices";
 import { HiArrowCircleRight } from "react-icons/hi";
 
 const SingleService = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [services] = useServices();
   const findService = services.find((service) => service.id === params.id);
-  //   console.log(findService);
   const firstParagraph = findService?.long_description.slice(0, 650);
   const secondParagraph = findService?.long_description.slice(
     50,
     findService?.long_description.length
     );
-    console.log(findService?.long_description.length);
+    const handleCheckOut = () => {
+        navigate('/checkout');
+    }
   return (
     <div className="grid grid-cols-2 gap-1">
       <div className="rounded-lg shadow-lg bg-white max-w-sm ml-11 mt-16 mb-16">
@@ -31,7 +33,7 @@ const SingleService = () => {
           <button
             id={findService?.id}
             type="button"
-            onClick={findService?.handleOnClick}
+            onClick={handleCheckOut}
             className="flex items-center px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           >
             Buy Now
