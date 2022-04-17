@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const navigate = useNavigate();
   const handleOnClick = (value) => {
-    console.log(value.target.id);
+    navigate(`/single_service/${value.target.id}`);
   };
   return (
     <div className="flex flex-wrap mx-3 overflow-hidden xl:mx-4 sm: mx-3">
@@ -114,16 +115,16 @@ const Services = () => {
             </p>
             <p className="pb-3">Price $</p>
             <button
-              id="platinum_course"
-              type="button"
               onClick={handleOnClick}
+              id="gold_course"
+              type="button"
               className="flex items-center px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             >
               Sign Up
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 ml-2"
-                id="platinum_course"
+                id="gold_course"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

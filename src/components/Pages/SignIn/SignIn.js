@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
       <form>
-        <div class="form-group mb-6">
+        <div className="form-group mb-6">
           <label
             for="exampleInputEmail2"
-            class="form-label inline-block mb-2 text-gray-700"
+            className="form-label inline-block mb-2 text-gray-700"
           >
             Email address
           </label>
           <input
             type="email"
-            class="form-control
+            className="form-control
               block
               w-full
               px-3
@@ -34,16 +34,16 @@ const SignIn = () => {
             placeholder="Enter email"
           />
         </div>
-        <div class="form-group mb-6">
+        <div className="form-group mb-6">
           <label
             for="exampleInputPassword2"
-            class="form-label inline-block mb-2 text-gray-700"
+            className="form-label inline-block mb-2 text-gray-700"
           >
             Password
           </label>
           <input
             type="password"
-            class="form-control block
+            className="form-control block
               w-full
               px-3
               py-1.5
@@ -61,15 +61,15 @@ const SignIn = () => {
             placeholder="Password"
           />
         </div>
-        <div class="flex justify-between items-center mb-6">
-          <div class="form-group form-check">
+        <div className="flex justify-between items-center mb-6">
+          <div className="form-group form-check">
             <input
               type="checkbox"
-              class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+              className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
               id="exampleCheck2"
             />
             <label
-              class="form-check-label inline-block text-gray-800"
+              className="form-check-label inline-block text-gray-800"
               for="exampleCheck2"
             >
               Remember me
@@ -77,14 +77,14 @@ const SignIn = () => {
           </div>
           <Link
             to={'/forget_password'}
-            class="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
+            className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
           >
             Forgot password?
           </Link>
         </div>
         <button
           type="submit"
-          class="
+          className="
             w-full
             px-6
             py-2.5
@@ -105,11 +105,11 @@ const SignIn = () => {
         >
           Sign in
         </button>
-        <p class="text-gray-800 mt-6 text-center">
+        <p className="text-gray-800 mt-6 text-center">
           Not Link member?{" "}
           <Link
             to={'/sign_up'}
-            class="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
+            className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
           >
             Sign Up
           </Link>
