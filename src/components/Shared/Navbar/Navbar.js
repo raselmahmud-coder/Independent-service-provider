@@ -1,8 +1,14 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import Header from "../../Pages/Home/Header/Header";
+import auth from "../../../Firebase-init";
 
 const Navbar = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const handleSignOut = () => {
+    signOut(auth);
+  };
   return (
     <>
       <nav
@@ -71,7 +77,7 @@ const Navbar = () => {
         lg:mt-0
         mr-1
       "
-              to={''}
+              to={""}
             >
               <h1 className="text-bold">HOPKINS COACH</h1>
             </Link>
@@ -79,7 +85,7 @@ const Navbar = () => {
               <li className="nav-item p-2">
                 <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  to={''}
+                  to={""}
                 >
                   Home
                 </Link>
@@ -87,7 +93,7 @@ const Navbar = () => {
               <li className="nav-item p-2">
                 <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  to={'/blog'}
+                  to={"/blog"}
                 >
                   Blog
                 </Link>
@@ -95,7 +101,7 @@ const Navbar = () => {
               <li className="nav-item p-2">
                 <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  to={'/about'}
+                  to={"/about"}
                 >
                   About
                 </Link>
@@ -103,7 +109,7 @@ const Navbar = () => {
               <li className="nav-item p-2">
                 <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  to={'/checkout'}
+                  to={"/checkout"}
                 >
                   Checkout
                 </Link>
@@ -111,9 +117,13 @@ const Navbar = () => {
               <li className="nav-item p-2">
                 <Link
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  to={'/sign_in'}
+                  to={"/sign_in"}
                 >
-                  Sign In
+                  {user ? (
+                    <button onClick={handleSignOut}>Sign Out</button>
+                  ) : (
+                    "Sign In"
+                  )}
                 </Link>
               </li>
             </ul>
@@ -122,7 +132,7 @@ const Navbar = () => {
           <div className="flex items-center relative">
             <Link
               className="text-gray-500 hover:text-gray-700 focus:text-gray-700 mr-4"
-              to={'/'}
+              to={"/"}
             >
               <svg
                 aria-hidden="true"
@@ -151,7 +161,7 @@ const Navbar = () => {
           hidden-arrow
           flex items-center
         "
-                to={''}
+                to={""}
                 id="dropdownMenuButton1"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -216,7 +226,7 @@ const Navbar = () => {
           text-gray-700
           hover:bg-gray-100
         "
-                    to={'/'}
+                    to={"/"}
                   >
                     Action
                   </Link>
@@ -236,7 +246,7 @@ const Navbar = () => {
           text-gray-700
           hover:bg-gray-100
         "
-                    to={''}
+                    to={""}
                   >
                     Another action
                   </Link>
@@ -256,7 +266,7 @@ const Navbar = () => {
           text-gray-700
           hover:bg-gray-100
         "
-                    to={'/'}
+                    to={"/"}
                   >
                     Something else here
                   </Link>
@@ -266,7 +276,7 @@ const Navbar = () => {
             <div className="dropdown relative">
               <Link
                 className="dropdown-toggle flex items-center hidden-arrow"
-                to={''}
+                to={""}
                 id="dropdownMenuButton2"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -320,7 +330,7 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                    to={'/'}
+                    to={"/"}
                   >
                     Action
                   </Link>
@@ -340,7 +350,7 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                    to={'/'}
+                    to={"/"}
                   >
                     Another action
                   </Link>
@@ -360,7 +370,7 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                    to={'/'}
+                    to={"/"}
                   >
                     Something else here
                   </Link>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../Firebase-init";
+import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -12,28 +14,44 @@ const SignIn = () => {
     emailError: "",
     passwordError: "",
   });
-  // const [user, loading, error] = useAuthState(auth);
-  console.log(userInfo.email);
-  console.log(userInfo.password);
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [authUser, authLoading, authError] = useAuthState(auth);
   const from = location.state?.from?.pathname || "/";
-  const handleSignIn = () => {
-    navigate(from, { replace: true });
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
   };
+  if (user) {
+    navigate(from, { replace: true });
+    toast.success("successfully logged in", {
+      id: "done_google",
+    });
+  }
+  if (error) {
+    return toast.error("error happened", {
+      id: "error",
+    });
+  }
+
   const handleEmail = (e) => {
+    // will do validation later
     if (e.target.value) {
       setUserInfo({ ...userInfo, email: e.target.value });
     }
   };
   const handlePassword = (e) => {
+    // will do validation later
     if (e.target.value) {
       setUserInfo({ ...userInfo, password: e.target.value });
     }
+  };
+  const handleForm = (e) => {
+    e.preventDefault();
   };
   return (
     <>
       <h1 className="mt-6 text-center text-4xl">Please Sign In</h1>
       <div className="mx-auto xl:my-10 sm:my-5 p-6 rounded-lg shadow-lg bg-white max-w-sm">
-        <form>
+        <form onSubmit={handleForm}>
           <div className="form-group mb-6">
             <label
               htmlFor="exampleInputEmail2"
@@ -133,9 +151,40 @@ const SignIn = () => {
             transition
             duration-150
             ease-in-out"
-            onClick={handleSignIn}
+            // onClick={handleEmailSignIn}
           >
             Sign in
+          </button>
+          <button
+            type="submit"
+            className="
+            mt-5
+            w-full
+            px-6
+            py-2.5
+            bg-gray-600
+            text-white
+            font-medium
+            text-xs
+            uppercase
+            rounded
+            shadow-md
+            hover:bg-blue-700 hover:shadow-lg
+            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+            active:bg-blue-800 active:shadow-lg
+            transition
+            duration-150
+            ease-in-out"
+            onClick={handleGoogleSignIn}
+          >
+            {loading ? (
+              <p className="text-3xl">Loading...</p>
+            ) : (
+              <span className="flex items-center justify-center">
+                Continue With
+                <FcGoogle className="ml-4 text-2xl" />
+              </span>
+            )}
           </button>
           <p className="text-gray-800 mt-6 text-center">
             Not Link member?{" "}
