@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
-    <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <div className="flex justify-center p-6 rounded-lg shadow-lg bg-white max-w-sm">
       <form>
         <div className="form-group mb-6">
           <label
-            for="exampleInputEmail2"
+            htmlFor="exampleInputEmail2"
             className="form-label inline-block mb-2 text-gray-700"
           >
             Email address
@@ -36,7 +36,7 @@ const SignIn = () => {
         </div>
         <div className="form-group mb-6">
           <label
-            for="exampleInputPassword2"
+            htmlFor="exampleInputPassword2"
             className="form-label inline-block mb-2 text-gray-700"
           >
             Password
@@ -70,7 +70,7 @@ const SignIn = () => {
             />
             <label
               className="form-check-label inline-block text-gray-800"
-              for="exampleCheck2"
+              htmlFor="exampleCheck2"
             >
               Remember me
             </label>
