@@ -85,7 +85,7 @@ const Navbar = () => {
             <ul className="navbar-nav flex flex-col pl-0 list-style-none m-auto">
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-200 p-0"
                   to={""}
                 >
                   Home
@@ -93,7 +93,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-200 p-0"
                   to={"/blog"}
                 >
                   Blog
@@ -101,7 +101,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-200 p-0"
                   to={"/about"}
                 >
                   About
@@ -109,7 +109,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-200 p-0"
                   to={"/checkout"}
                 >
                   Checkout
@@ -117,7 +117,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-200 p-0"
                   to={"/sign_in"}
                 >
                   {user ? (
@@ -130,7 +130,7 @@ const Navbar = () => {
               {!user && (
                 <li className="nav-item p-2">
                   <Link
-                    className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
+                    className="nav-link text-white hover:text-gray-200 focus:text-gray-200 p-0"
                     to={"/sign_up"}
                   >
                     Sign Up
@@ -143,7 +143,7 @@ const Navbar = () => {
           {user && (
             <div className="flex items-center relative">
               <Link
-                className="text-white hover:text-gray-200 focus:text-gray-700 mr-4"
+                className="text-white hover:text-gray-200 focus:text-gray-200 mr-4"
                 to={"/"}
               >
                 <svg
@@ -167,7 +167,7 @@ const Navbar = () => {
                   className="
           text-white
           hover:text-gray-200
-          focus:text-gray-700
+          focus:text-gray-200
           mr-4
           dropdown-toggle
           hidden-arrow
