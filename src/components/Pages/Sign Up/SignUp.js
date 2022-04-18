@@ -1,38 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdMarkEmailRead } from "react-icons/md";
 import { BiLock } from "react-icons/bi";
 import { BsPersonCircle, BsGoogle } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../../../Firebase-init";
 import Spinner from "../../Shared/Spinner/Spinner";
 import toast from "react-hot-toast";
 const SignUp = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+    name: "",
+    emailError: "",
+    passwordError: "",
+    nameError: "",
+  });
+  const [updateProfile] = useUpdateProfile(auth);
+  const handleName = async (e) => {
+    const value = e.target.value;
+    if (value.length > 4) {
+      setUserInfo({ ...userInfo, name: value, nameError: "" });
+      await updateProfile({ displayName: userInfo?.name });
+      toast.success(`${userInfo?.name} is updated`, {
+        id: "updated",
+      });
+    } else {
+      setUserInfo({ ...userInfo, nameError: "name is required", name: "" });
+    }
+  };
+  const handleEmail = (e) => {
+    const value = e.target.value;
+    const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailValidation.test(value)) {
+      setUserInfo({ ...userInfo, email: value, emailError: "" });
+      toast.success(`${userInfo?.email} is updated`, {
+        id: "updated",
+      });
+    } else {
+      setUserInfo({ ...userInfo, emailError: "invalid email", email: "" });
+    }
+  };
+  const handlePassword = (e) => {
+    const value = e.target.value;
+    if (value.length > 5) {
+      setUserInfo({ ...userInfo, password: value, passwordError: "" });
+      toast.success(`password is correct`, {
+        id: "updated",
+      });
+    } else {
+      setUserInfo({
+        ...userInfo,
+        passwordError: "invalid password",
+        password: "",
+      });
+      toast.error(`password is incorrect`, {
+        id: "updated",
+      });
+    }
+  };
+  const handleForm = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+  };
+  /*========================= for google sign Up ============================== */
   const handleSignUpGoogle = () => {
     signInWithGoogle();
   };
-  if (loading) {
+  if (googleLoading || loading) {
     return <Spinner />;
   }
-  if (user) {
+  if (googleUser || user) {
     navigate(from, { replace: true });
     toast.success("successfully logged in", {
       id: "done_google",
     });
   }
-  if (error) {
+  if (googleError || error) {
     toast.error("error happened", {
       id: "error",
     });
   }
   return (
-    <div>
-      <section className="h-screen">
+    <div className={"my-2"}>
+      <section className="h-screen my-5">
         <div className="container px-6 py-12 h-full">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
@@ -43,31 +105,67 @@ const SignUp = () => {
               />
             </div>
             <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-              <form>
-                <div className="mb-6 flex items-center">
-                  <BsPersonCircle className="text-5xl mr-2" />
-                  <input
-                    type="text"
-                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    placeholder="Full Name"
-                  />
+              <form onSubmit={handleForm}>
+                <div className="my-2">
+                  <div className="flex items-center">
+                    <BsPersonCircle className="text-5xl mr-2" />
+                    <input
+                      type="text"
+                      className={`${
+                        userInfo?.nameError
+                          ? "focus:outline-red-600 border-red-700 "
+                          : "focus:outline-blue-600 border-gray-700 "
+                      }form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid rounded transition ease-in-out m-0 focus:gray-red-700 focus:bg-white`}
+                      placeholder="Full Name"
+                      onInput={handleName}
+                    />
+                  </div>
+                  {userInfo?.nameError && (
+                    <p className="text-red-600 text-center text-base">
+                      {userInfo?.nameError}
+                    </p>
+                  )}
                 </div>
-                <div className="mb-6 flex items-center">
-                  <MdMarkEmailRead className="text-5xl mr-2" />
-                  <input
-                    type="text"
-                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    placeholder="Email address"
-                  />
+                <div className={"my-2"}>
+                  <div className="flex items-center">
+                    <MdMarkEmailRead className="text-5xl mr-2" />
+                    <input
+                      type="text"
+                      className={`${
+                        userInfo?.emailError
+                          ? "focus:outline-red-600 "
+                          : "focus:outline-blue-600 "
+                      }form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-700 rounded transition ease-in-out m-0 focus:gray-red-700 focus:bg-white`}
+                      placeholder="Email address"
+                      onInput={handleEmail}
+                    />
+                  </div>
+                  {userInfo?.emailError && (
+                    <p className="text-red-600 text-center text-base">
+                      {userInfo?.emailError}
+                    </p>
+                  )}
                 </div>
 
-                <div className="mb-6 flex items-center">
-                  <BiLock className="text-5xl mr-2" />
-                  <input
-                    type="password"
-                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    placeholder="Password"
-                  />
+                <div className={"my-2"}>
+                  <div className="flex items-center">
+                    <BiLock className="text-5xl mr-2" />
+                    <input
+                      type="password"
+                      className={`${
+                        userInfo?.passwordError
+                          ? "focus:outline-red-600 "
+                          : "focus:outline-blue-600 "
+                      }form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-700 rounded transition ease-in-out m-0 focus:gray-red-700 focus:bg-white`}
+                      placeholder="Password"
+                      onInput={handlePassword}
+                    />
+                  </div>
+                  {userInfo?.passwordError && (
+                    <p className="text-red-600 text-center text-base">
+                      {userInfo?.passwordError}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex justify-between items-center mb-6">

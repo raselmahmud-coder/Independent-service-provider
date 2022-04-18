@@ -317,9 +317,10 @@ const Navbar = () => {
                       Profile
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      className="
+                  {user?.displayName && (
+                    <li>
+                      <Link
+                        className="
         dropdown-item
         text-sm
         py-2
@@ -332,11 +333,12 @@ const Navbar = () => {
         text-gray-700
         hover:bg-gray-100
       "
-                      to={"/"}
-                    >
-                      {user && user?.displayName}
-                    </Link>
-                  </li>
+                        to={"/"}
+                      >
+                        {user?.displayName}
+                      </Link>
+                    </li>
+                  )}
                   <li>
                     <Link
                       className="

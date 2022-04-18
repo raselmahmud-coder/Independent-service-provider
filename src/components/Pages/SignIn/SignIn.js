@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../Firebase-init";
 import { BsGoogle } from "react-icons/bs";
@@ -15,26 +15,32 @@ const SignIn = () => {
     emailError: "",
     passwordError: "",
   });
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
   const from = location.state?.from?.pathname || "/";
   const handleGoogleSignIn = () => {
     signInWithGoogle();
   };
-  if (loading) {
+  if (googleLoading) {
     return <Spinner />;
   }
-  if (user) {
+  if (googleUser) {
     navigate(from, { replace: true });
     toast.success("successfully logged in", {
       id: "done_google",
     });
   }
-  if (error) {
+  if (googleError) {
     toast.error("error happened", {
       id: "error",
     });
   }
-  console.log(userInfo);
+  console.log("from sign in ",userInfo);
   const handleEmail = (e) => {
     // will do validation later
     if (e.target.value) {
