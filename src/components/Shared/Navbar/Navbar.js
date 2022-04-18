@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import auth from "../../../Firebase-init";
 import placeholder from "../../../images/placeholderImg.png";
 const Navbar = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   console.log(user?.photoURL);
   const handleSignOut = () => {
     signOut(auth);
@@ -13,6 +13,7 @@ const Navbar = () => {
   return (
     <>
       <nav
+        style={{ backgroundColor: "#0A4275" }}
         className="
   relative
   w-full
@@ -20,10 +21,9 @@ const Navbar = () => {
   items-center
   justify-between
   py-4
-  bg-gray-100
-  text-gray-500
-  hover:text-gray-700
-  focus:text-gray-700
+  text-white
+  hover:text-gray-200
+  focus:text-white
   shadow-lg
   navbar navbar-expand-lg navbar-light
   "
@@ -32,7 +32,7 @@ const Navbar = () => {
           <button
             className="
       navbar-toggler
-      text-gray-500
+      text-white
       border-0
       hover:shadow-none hover:no-underline
       py-2
@@ -71,21 +71,21 @@ const Navbar = () => {
               className="
         flex
         items-center
-        text-gray-900
-        hover:text-gray-900
-        focus:text-gray-900
+        text-white
+        hover:text-gray-100
+        focus:text-gray-200
         mt-2
         lg:mt-0
         mr-1
       "
-              to={""}
+              to={"/"}
             >
               <h1 className="text-bold">HOPKINS COACH</h1>
             </Link>
             <ul className="navbar-nav flex flex-col pl-0 list-style-none m-auto">
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
                   to={""}
                 >
                   Home
@@ -93,7 +93,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
                   to={"/blog"}
                 >
                   Blog
@@ -101,7 +101,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
                   to={"/about"}
                 >
                   About
@@ -109,7 +109,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
                   to={"/checkout"}
                 >
                   Checkout
@@ -117,7 +117,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item p-2">
                 <Link
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
                   to={"/sign_in"}
                 >
                   {user ? (
@@ -130,7 +130,7 @@ const Navbar = () => {
               {!user && (
                 <li className="nav-item p-2">
                   <Link
-                    className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                    className="nav-link text-white hover:text-gray-200 focus:text-gray-700 p-0"
                     to={"/sign_up"}
                   >
                     Sign Up
@@ -143,7 +143,7 @@ const Navbar = () => {
           {user && (
             <div className="flex items-center relative">
               <Link
-                className="text-gray-500 hover:text-gray-700 focus:text-gray-700 mr-4"
+                className="text-white hover:text-gray-200 focus:text-gray-700 mr-4"
                 to={"/"}
               >
                 <svg
@@ -165,8 +165,8 @@ const Navbar = () => {
               <div className="dropdown relative">
                 <Link
                   className="
-          text-gray-500
-          hover:text-gray-700
+          text-white
+          hover:text-gray-200
           focus:text-gray-700
           mr-4
           dropdown-toggle

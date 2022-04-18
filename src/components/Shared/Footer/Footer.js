@@ -14,7 +14,7 @@ const Footer = () => {
               <span className="mr-4">Register for free</span>
               <button
                 type="button"
-                className="inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded-full hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                className="inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded-full hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
               >
                 Sign up!
               </button>
@@ -26,7 +26,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
@@ -48,7 +48,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
@@ -70,7 +70,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
@@ -92,7 +92,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
@@ -114,7 +114,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
@@ -136,7 +136,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-green-400 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:text-gray-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
@@ -158,7 +158,7 @@ const Footer = () => {
         </div>
         <div
           className="text-center p-4"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+          style={{ backgroundColor: "#0A4275" }}
         >
           &copy; 2020-{new Date().getFullYear()} Copyright :{" "}
           <Link className="text-white" to={"/"}>

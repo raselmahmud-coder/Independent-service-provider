@@ -30,7 +30,6 @@ const SignIn = () => {
   const handleForm = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(userInfo?.email, userInfo?.password);
-    console.log("sign is here");
   };
   const handleGoogleSignIn = () => {
     signInWithGoogle();
@@ -39,7 +38,7 @@ const SignIn = () => {
     return <Spinner />;
   }
   if (googleError || error) {
-    toast.error("error happened", {
+    toast.error(googleError?.code || error?.code, {
       id: "error",
     });
   }

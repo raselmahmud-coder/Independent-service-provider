@@ -21,7 +21,7 @@ const SignUp = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -91,7 +91,7 @@ const SignUp = () => {
     });
   }
   if (googleError || error) {
-    toast.error("error happened", {
+    toast.error(googleError?.code || error?.code, {
       id: "error",
     });
   }
