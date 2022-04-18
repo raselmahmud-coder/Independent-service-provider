@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../Firebase-init";
 import { BsGoogle } from "react-icons/bs";
@@ -15,46 +18,66 @@ const SignIn = () => {
     emailError: "",
     passwordError: "",
   });
-  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth);
   const from = location.state?.from?.pathname || "/";
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const handleForm = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(userInfo?.email, userInfo?.password);
+    console.log("sign is here");
+  };
   const handleGoogleSignIn = () => {
     signInWithGoogle();
   };
-  if (googleLoading) {
+  if (googleLoading || loading) {
     return <Spinner />;
   }
-  if (googleUser) {
+  if (googleUser || user) {
     navigate(from, { replace: true });
     toast.success("successfully logged in", {
       id: "done_google",
     });
   }
-  if (googleError) {
+  if (googleError || error) {
     toast.error("error happened", {
       id: "error",
     });
   }
-  console.log("from sign in ",userInfo);
+  console.log("from sign in ", userInfo);
   const handleEmail = (e) => {
-    // will do validation later
-    if (e.target.value) {
-      setUserInfo({ ...userInfo, email: e.target.value });
+    const value = e.target.value;
+    const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailValidation.test(value)) {
+      setUserInfo({ ...userInfo, email: value, emailError: "" });
+      toast.success(`${userInfo?.email} is updated`, {
+        id: "updated",
+      });
+    } else {
+      setUserInfo({ ...userInfo, emailError: "invalid email", email: "" });
+      toast.error(`email is incorrect`, {
+        id: "updated",
+      });
     }
   };
   const handlePassword = (e) => {
-    // will do validation later
-    if (e.target.value) {
-      setUserInfo({ ...userInfo, password: e.target.value });
+    const value = e.target.value;
+    if (value.length > 5) {
+      setUserInfo({ ...userInfo, password: value, passwordError: "" });
+      toast.success(`password is correct`, {
+        id: "updated",
+      });
+    } else {
+      setUserInfo({
+        ...userInfo,
+        passwordError: "invalid password",
+        password: "",
+      });
+      toast.error(`password is incorrect`, {
+        id: "updated",
+      });
     }
-  };
-  const handleForm = (e) => {
-    e.preventDefault();
   };
   return (
     <>
@@ -111,6 +134,7 @@ const SignIn = () => {
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="exampleFormControlInput2"
                     placeholder="Email address"
+                    required
                     onInput={handleEmail}
                   />
                 </div>
@@ -121,6 +145,7 @@ const SignIn = () => {
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="exampleFormControlInput2"
                     placeholder="Password"
+                    required
                     onInput={handlePassword}
                   />
                 </div>
@@ -149,10 +174,10 @@ const SignIn = () => {
 
                 <div className="text-center lg:text-left">
                   <button
-                    type="button"
+                    type="submit"
                     className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                   >
-                    Login
+                    sign in
                   </button>
                   <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                     Don't have an account?{" "}

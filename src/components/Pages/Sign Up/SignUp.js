@@ -137,6 +137,7 @@ const SignUp = () => {
                           : "focus:outline-blue-600 "
                       }form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-700 rounded transition ease-in-out m-0 focus:gray-red-700 focus:bg-white`}
                       placeholder="Email address"
+                      required
                       onInput={handleEmail}
                     />
                   </div>
@@ -158,6 +159,7 @@ const SignUp = () => {
                           : "focus:outline-blue-600 "
                       }form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-700 rounded transition ease-in-out m-0 focus:gray-red-700 focus:bg-white`}
                       placeholder="Password"
+                      required
                       onInput={handlePassword}
                     />
                   </div>
